@@ -83,18 +83,22 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 import dj_database_url
-DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'mysql.connector.django',
-    #     'NAME': os.getenv('DB_NAME') ,
-    #     'USER' : os.getenv('DB_USER'),
-    #     'PASSWORD' : os.getenv('DB_PASSWORD'),
-    #     'HOST' : os.getenv('DB_HOST'),
-    #     'PORT' : os.getenv('DB_PORT')
-    # }
-        'default': dj_database_url.config(conn_max_age=600)
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',
+#         'NAME': os.getenv('DB_NAME') ,
+#         'USER' : os.getenv('DB_USER'),
+#         'PASSWORD' : os.getenv('DB_PASSWORD'),
+#         'HOST' : os.getenv('DB_HOST'),
+#         'PORT' : os.getenv('DB_PORT')
+#     }
 
+# }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')  # Render จะตั้งค่าตัวแปร DATABASE_URL ให้อัตโนมัติ
+    )
+}
 
 
 # Password validation
