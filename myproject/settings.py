@@ -23,7 +23,8 @@ production_host = os.getenv("PRODUCTION_HOST")
 # ALLOWED_HOSTS = [production_host] if production_host is not None else ["127.0.0.1"]
 
 # IPv4 Address --> 10.236.126.195:8000 (WIFI - InternetMGMT)
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','10.236.35.235']
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1','10.236.35.235']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 
 
@@ -129,8 +130,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
-STATIC_ROOT = "static/"
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
