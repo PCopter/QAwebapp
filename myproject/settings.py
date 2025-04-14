@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-import dj_database_url
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'mysql.connector.django',
@@ -94,11 +94,16 @@ import dj_database_url
 #     }
 
 # }
+# Render จะตั้งค่าตัวแปร DATABASE_URL ให้อัตโนมัติ
+import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')  # Render จะตั้งค่าตัวแปร DATABASE_URL ให้อัตโนมัติ
+        default=os.environ.get('DATABASE_URL')  
     )
 }
+CSRF_TRUSTED_ORIGINS = [
+    'https://qawebapp.onrender.com',
+]
 
 
 # Password validation
